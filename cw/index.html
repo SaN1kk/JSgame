@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Dungeon – старт</title>
+    <link rel="stylesheet" href="styles/style_index.css">
+</head>
+<body>
+<div id="start-box">
+    <h1>Dungeon</h1>
+
+    <div id="legend">
+        Ты очнулся в забытых подземельях старой крепости.<br>  
+        Шёпот в темноте говорит, что где-то здесь спрятан ключ к свободе…<br>  
+        Но на пути — лава, ловушки, бомбы и запертые двери.<br>
+        Собери ключи, обмани смерть и попробуй выбраться живым.<br><br>
+    </div>
+
+    <label for="nickname">Как тебя зовут, герой?</label>
+    <input id="nickname" type="text" placeholder="name" maxlength="20">
+    <button id="start-btn">Войти в подземелье</button>
+</div>
+
+
+<script src="js/recordsManager.js"></script>
+<script>
+    const input = document.getElementById("nickname");
+    const btn = document.getElementById("start-btn");
+
+    btn.addEventListener("click", () => {
+        let name = input.value.trim();
+        if (!name) {
+            name = "Player";
+        }
+        recordsManager.setCurrentName(name);
+        localStorage.removeItem("runScore");
+        localStorage.removeItem("runState");
+        window.location.href = "level1.html";
+    });
+</script>
+</body>
+</html>

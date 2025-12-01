@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background: #050509;          /* тёмный фон */
+    display: flex;
+    justify-content: center;      /* по центру по горизонтали */
+    align-items: center;          /* по центру по вертикали */
+    font-family: monospace;
+}
+
+#page {
+    display: flex;
+    align-items: center;
+    gap: 16px;                    /* расстояние между HUD и игрой */
+}
+
+/* Лёгкий HUD слева */
+#hud-panel {
+    min-width: 140px;
+    padding: 8px 10px;
+    border: 1px solid #b37cff;    /* лёгкая фиолетовая обводка */
+    border-radius: 4px;
+    color: #ffffff;               /* белый текст */
+    font-size: 13px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.6);
+    background: transparent;      /* можно оставить прозрачным */
+}
+
+#hud-panel .hud-row {
+    margin-bottom: 4px;
+}
+
+/* Канвас игры */
+canvas {
+    border: 1px solid #444;
+    image-rendering: pixelated;
+}

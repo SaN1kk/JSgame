@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Dungeon - Уровень 1</title>
+    <link rel="stylesheet" href="styles/style_game.css">
+</head>
+<body>
+<div id="page">
+    <div id="hud-panel">
+        <div class="hud-row">User: <span id="hud-name">???</span></div>
+        <div class="hud-row">HP: <span id="hud-hp">1</span></div>
+        <div class="hud-row">Level: <span id="hud-level">1</span></div>
+        <div class="hud-row">Score: <span id="hud-score">0</span></div>
+        <div class="hud-row">
+            Keys:
+            <span id="hud-key-silver">S:0</span>,
+            <span id="hud-key-gold">G:0</span>
+        </div>
+    </div>
+
+    <canvas id="game" width="512" height="512"></canvas>
+</div>
+
+<script src="js/mapManager.js"></script>
+<script src="js/physicManager.js"></script>
+<script src="js/eventsManager.js"></script>
+<script src="js/spriteManager.js"></script>
+<script src="js/entities.js"></script>
+<script src="js/recordsManager.js"></script>
+<script src="js/soundManager.js"></script>
+<script src="js/gameManager.js"></script>
+
+<script>
+    const canvas = document.getElementById("game");
+    const ctx = canvas.getContext("2d");
+
+    const hudName = document.getElementById("hud-name");
+    if (hudName) {
+        hudName.textContent = recordsManager.getCurrentName();
+    }
+
+    gameManager.level = 1;
+    gameManager.init(ctx, "maps/level1.json");
+</script>
+</body>
+</html>

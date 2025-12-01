@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Dungeon – рекорды</title>
+    <link rel="stylesheet" href="styles/style_record.css">
+</head>
+<body>
+<div id="box">
+    <h1>Таблица рекордов</h1>
+    <table id="records-table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Ник</th>
+            <th>Очки</th>
+            <th>Результат</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div id="buttons">
+        <button id="home-btn">В начало</button>
+        <button id="again-btn">Сыграть ещё</button>
+    </div>
+</div>
+
+
+<script src="js/recordsManager.js"></script>
+<script>
+    const tbody   = document.querySelector("#records-table tbody");
+    const records = recordsManager.getRecords();
+    const last    = recordsManager.getLastRecord();
+
+    records.forEach((rec, index) => {
+        const tr = document.createElement("tr");
+
+        // выделяем строку с последней (лучшей) записью игрока
+        if (last &&
+            last.name === rec.name &&
+            last.score === rec.score &&
+            last.date === rec.date) {
+            tr.classList.add("highlight");
+        }
+
+        const placeTd = document.createElement("td");
+        const nameTd  = document.createElement("td");
+        const scoreTd = document.createElement("td");
+        const resTd   = document.createElement("td");
+
+        placeTd.textContent = index + 1;
+        nameTd.textContent  = rec.name;
+        scoreTd.textContent = rec.score;
+        resTd.textContent   = rec.success ? "Пройдено" : "Смерть";
+
+        tr.appendChild(placeTd);
+        tr.appendChild(nameTd);
+        tr.appendChild(scoreTd);
+        tr.appendChild(resTd);
+
+        tbody.appendChild(tr);
+    });
+
+    document.getElementById("home-btn").onclick = () => {
+        // вернуться на страницу ввода имени
+        window.location.href = "index.html";
+    };
+
+    document.getElementById("again-btn").onclick = () => {
+        // сыграть ещё с тем же именем (оно уже лежит в localStorage)
+        window.location.href = "level1.html";
+    };
+</script>
+</body>
+</html>
